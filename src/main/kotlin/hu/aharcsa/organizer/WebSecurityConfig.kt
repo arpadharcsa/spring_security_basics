@@ -11,15 +11,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 class WebSecurityConfig(disableDefaults: Boolean = false) : WebSecurityConfigurerAdapter(disableDefaults) {
     override fun configure(http: HttpSecurity?) {
-        http?.formLogin{}
+        http?.csrf()
+            ?.ignoringAntMatchers("/h2-console/**")
+            ?.and()
+            ?.formLogin{}
             ?.authorizeRequests()
             ?.antMatchers("/h2-console/**")
             ?.permitAll()
             ?.anyRequest()
             ?.authenticated()
-        http?.csrf()
-            ?.disable()
-        http?.headers()
+            ?.and()
+            ?.headers()
             ?.frameOptions()
             ?.disable()
     }
