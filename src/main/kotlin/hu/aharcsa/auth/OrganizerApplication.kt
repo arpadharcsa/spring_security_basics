@@ -1,4 +1,4 @@
-package hu.aharcsa.organizer
+package hu.aharcsa.auth
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
